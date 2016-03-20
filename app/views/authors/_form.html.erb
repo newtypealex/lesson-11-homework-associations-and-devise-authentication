@@ -1,0 +1,28 @@
+<div>
+  <%= form_for @author do |f| %>
+
+    <% if @author.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@article.errors.count, "error") %> prohibited this from being saved:</h2>
+        <ul>
+         <% @author.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p>
+      <%= f.label :first_name, 'First Name' %>
+      <%= f.text_field :first_name %>
+    </p>
+    <p>
+      <%= f.label :last_name, 'Last Name' %>
+      <%= f.text_field :last_name %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end %>
+</div>

@@ -1,0 +1,26 @@
+<h1> Authors Index Page</h1>
+
+<div>
+  <table>
+    <tr>
+      <th>First Name</th> 
+      <th>Last Name</th>    
+    </tr>
+    <tbody>
+      <% @authors.each do |author| %>
+      <tr>
+        <td><%= link_to(author.first_name, author_path(author)) %></td>
+        <td><%= author.last_name %>
+        <% if current_user %>
+        <td><%= link_to 'EDIT', edit_author_path(author) %></td>
+        <td><%= link_to 'DELETE', author_path(author), method: :delete, data: { confirm: 'Are you sure you want to delete this author?' }  %></td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+    </table>
+</div>    
+<br>
+<div>
+  <%= link_to 'Create a new Author', new_author_path %>
+</div>

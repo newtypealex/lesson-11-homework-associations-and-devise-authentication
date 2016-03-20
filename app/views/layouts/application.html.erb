@@ -8,7 +8,28 @@
 </head>
 <body>
 
-<%= yield %>
+  <div id="usernav">
+    <% if user_signed_in? %>
+      <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+    <% else %>
+      <li><%= link_to('Login', new_user_session_path)  %></li>
+    <% end %>
+  </div> 
 
+  <nav id="appnav">
+      <li><%= link_to "Home", root_path%></li>
+      <li><%= link_to "Articles", articles_path %></li>
+      <li><%= link_to "Authors", authors_path %></li>
+      <li><%= link_to "Tags", tags_path %></li>
+  </nav>
+
+  <% flash.each do |name, msg| %>
+    <div class="<%= name %>">
+      <%= msg %>
+    </div>
+  <% end %>
+
+  <%= yield %>
+  
 </body>
 </html>

@@ -1,0 +1,24 @@
+<h1> Tags Index Page</h1>
+
+<div>
+  <table>
+    <tr>
+      <th>Tag Name</th> 
+    </tr>
+    <tbody>
+      <% @tags.each do |tag| %>
+      <tr>
+        <td><%= link_to(tag.name, tag_path(tag)) %></td>
+        <% if current_user %>
+        <td><%= link_to 'EDIT', edit_tag_path(tag) %></td>
+        <td><%= link_to 'DELETE', tag_path(tag), method: :delete, data: { confirm: 'Are you sure you want to delete this tag?' }  %></td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+    </table>
+</div>    
+<br>
+<div>
+  <%= link_to 'Create a new Tag', new_tag_path %>
+</div>

@@ -1,0 +1,38 @@
+<div>
+  <%= form_for @article do |f| %>
+
+    <% if @article.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@article.errors.count, "error") %> prohibited this from being saved:</h2>
+        <ul>
+         <% @article.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p>
+      <%= f.label :title, 'TITLE' %>
+      <%= f.text_field :title %>
+    </p>
+    <p>
+      <%= f.label :body, 'BODY' %>
+      <%= f.text_field :body %>
+    </p>
+
+    <p>
+      <%= f.label :author %><br>
+      <%= collection_select(:article, :author_id, Author.all, :id, :first_name, include_blank: true) %>
+    </p>
+
+    <p>
+      <%= f.label :tag, "Tags" %><br>
+      <%= collection_check_boxes(:article, :tag_ids, Tag.all, :id, :name) %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end %>
+</div>
